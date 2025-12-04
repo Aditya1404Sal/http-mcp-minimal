@@ -1,5 +1,11 @@
-package wasmcloud:hello;
+package wasmcloud:mcp;
 
 world mcp {
-   export wasi:http/incoming-handler@0.2.2;
+   export mcp-handler;
+}
+
+interface mcp-handler {
+    use wasi:http/types@0.2.2.{incoming-request, response-outparam};
+    
+    mcp-handle: func(request: incoming-request, response: response-outparam);
 }
